@@ -15,7 +15,8 @@
  
 <script type="text/javascript">
   var secondlevel = 
-      {"A1": "Informazioni Commerciali",
+      {"A0": "Scegli una opzione...",
+       "A1": "Informazioni Commerciali",
        "A2": "Informazioni Tecniche",
        "A3": "Problemi Gestione Cliente",
        "A4": "Problemi Tecnici",
@@ -41,12 +42,11 @@
       }
   $( document ).ready(function() {
     $("#triplettauno").on('change', function() {
-      var s = $('<select />');
+      var s = $('<select id="triplettadue"/>');
       for(var val in secondlevel) {
-        //if(val contains this.value){
-          
-        //}
-        $('<option />', {value: val, text: secondlevel[val]}).appendTo(s);
+        if(val.includes(this.value)){
+          $('<option />', {value: val, text: secondlevel[val]}).appendTo(s);
+        }
       }
       s.appendTo('body');
 
