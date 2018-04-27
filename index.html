@@ -37,9 +37,13 @@
        "F4": "Problemi Gestione Cliente",
        "F5": "Problemi Tecnici"
       }
-  $("#triplettauno").on('change', function() {
-    alert( this.value );
-  })
+  $( document ).ready(function() {
+    $("#triplettauno").on('change', function() {
+      alert( this.value );
+    })
+  });
+    
+
   
 $(function() {
     $(".chzn-select").chosen();
