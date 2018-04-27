@@ -40,6 +40,15 @@
       }
   $( document ).ready(function() {
     $("#triplettauno").on('change', function() {
+      var s = $('<select />');
+      for(var val in secondlevel) {
+        //if(val contains this.value){
+          
+        //}
+        $('<option />', {value: val, text: secondlevel[val]}).appendTo(s);
+      }
+      s.appendTo('body');
+
       alert( this.value );
     })
   });
