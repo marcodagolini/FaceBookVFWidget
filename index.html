@@ -38,6 +38,20 @@
        "F4": "Problemi Gestione Cliente",
        "F5": "Problemi Tecnici"
       }
+  var thirdlevel = 
+      {"A11": "Microbusiness",
+       "A12": "Corporate",
+       "A13": "Office",
+       "A21": "Microbusiness",
+       "A22": "Corporate",
+       "A23": "Office",
+       "A31": "Microbusiness",
+       "A32": "Corporate",
+       "A33": "Office",
+       "A41": "Microbusiness",
+       "A42": "Corporate",
+       "A43": "Office"
+      }
   $( document ).ready(function() {
     $("#triplettauno").on('change', function() {
      $("#triplettadue").remove();
@@ -49,6 +63,20 @@
        for(var val in secondlevel) {
         if(val.includes(this.value)){
          $('<option />', {value: val, text: secondlevel[val]}).appendTo(s);
+        }
+       }
+       s.appendTo('body');
+      }
+    })
+   $("#triplettadue").on('change', function() {
+     $("#triplettatre").remove();
+     	
+
+      var s = $('<select id="triplettatre"/>');
+      if(!(this.value.includes("0"))){
+       for(var val in thirdlevel) {
+        if(val.includes(this.value)){
+         $('<option />', {value: val, text: thirdlevel[val]}).appendTo(s);
         }
        }
        s.appendTo('body');
