@@ -216,7 +216,7 @@ button:hover {
          $('<option />', {value: val, text: secondlevel[val]}).appendTo(s);
         }
        }
-       s.appendTo('body');
+       s.appendTo('#tripletta');
        $("#triplettadue").css("display","block");
       }
      $("#triplettadue").on('change', function() {
@@ -230,7 +230,7 @@ button:hover {
          $('<option />', {value: val, text: thirdlevel[val]}).appendTo(s);
         }
        }
-       s.appendTo('body');
+       s.appendTo('#tripletta');
        $("#triplettatre").css("display","block");
       }
     })
@@ -285,7 +285,7 @@ $(function() {
   </br>
   </br>
   
-  
+ <div id="tripletta"> 
   <select id="triplettauno">
     <option value="0">Scegli una opzione...</option>
     <option value="A">Enterprise</option>
@@ -295,13 +295,12 @@ $(function() {
     <option value="E">Residential</option>
     <option value="F">Mobile</option>
   </select>
+</div>
 
+  </br>
+  <button id="submit" >Invia</button>
 
 </body>
 
-<footer>
-  </br>
-  <button id="submit" >Invia</button>
-</footer>
 
 </html>
