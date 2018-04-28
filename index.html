@@ -45,14 +45,14 @@
      	
 
       var s = $('<select id="triplettadue"/>');
-      for(var val in secondlevel) {
-        if(val.includes(this.value) && !val.includes("0")){
-          $('<option />', {value: val, text: secondlevel[val]}).appendTo(s);
+      if(!val.includes("0")){
+       for(var val in secondlevel) {
+        if(val.includes(this.value)){
+         $('<option />', {value: val, text: secondlevel[val]}).appendTo(s);
         }
+       }
       }
       s.appendTo('body');
-
-      alert( this.value );
     })
   });
     
