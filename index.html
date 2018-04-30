@@ -39,6 +39,88 @@ button:hover {
 <body>
 
 
+<script>
+      
+	function sendData() {
+		document.getElementById("alert").innerHTML = "...invio dati...";
+            	document.getElementById("alert").style = "color : red";
+		var yesno = $('input[name=yesno]:checked').val();
+		if (yesno === undefined){
+			yesno = "---";
+		}
+		var comments = $("#comments").val();
+		if (comments === undefined || comments === ""){
+			comments = "---";
+		}
+		var minutes = "";
+		if ($('#minutes').is(":checked")){
+			minutes = "noLimbo";
+		}
+		else{
+			minutes = "---";
+		}
+		
+		console.log("***" + yesno + "***" + comments + "***" + minutes + "***");
+        	var xhr = new XMLHttpRequest();
+        	xhr.addEventListener("readystatechange", function () {
+          		if (this.readyState === 4) {
+				// var jsonResult = JSON.parse(this.responseText);
+            			document.getElementById("alert").innerHTML = "fatto!";
+            			document.getElementById("alert").style = "color : green";
+          		}
+        	});
+        	var URLforGET = "https://vodafonebotdario.herokuapp.com/add?yesno=" + yesno + "&comments=" + comments + "&convID=" + convID + "&skill=" + skill + "&minutes=" + minutes;
+		console.log(URLforGET);
+		xhr.open("GET", URLforGET);
+        	xhr.send();
+	}
+	
+	var convID = "";
+	var skill = "";
+	    
+	$(document).ready(function() {
+              
+              	var SDK=lpTag.agentSDK;
+              	SDK.init();
+                
+                var onSuccess1 = function(data) {
+                // Do something with the returning data
+                	convID = data;
+                };
+                
+                var onError1 = function(data) {
+                // Do something with the returning data
+                	convID = null;
+                };
+                
+                
+                var onSuccess2 = function(data) {
+                // Do something with the returning data
+                	skill = data;
+                };
+                
+                
+                var onError2 = function(data) {
+                // Do something with the returning data
+                	skill = null;
+                };
+                
+               
+   
+               
+             
+                SDK.get('chatInfo.rtSessionId', onSuccess1, onError1);
+                SDK.get('engagementInfo.skill', onSuccess2, onError2);
+               
+              
+           });
+	    
+	    
+	    
+      
+    </script>
+	
+	
  
 <script type="text/javascript">
   var secondlevel = 
