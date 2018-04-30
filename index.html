@@ -92,7 +92,7 @@ button:hover {
 				console.log(xhr.response);
           		}
         	});
-        	var URLforGET = "https://vodafonebotdario.herokuapp.com/add?telefono=" + telefono + "&ricontatto=" + ricontatto + "&cfiscale=" + cfiscale + "&convID=" + convID;
+        	var URLforGET = "https://vodafonebotdario.herokuapp.com/add?retrieve=0&telefono=" + telefono + "&ricontatto=" + ricontatto + "&cfiscale=" + cfiscale + "&vfTag=" + vfTag + "&triplettauno=" + triplettauno + "&triplettadue=" + triplettadue + "&triplettatre=" + triplettatre + "&convID=" + convID;
 		console.log(URLforGET);
 		xhr.open("GET", URLforGET);
         	xhr.send();
@@ -119,7 +119,18 @@ button:hover {
 		var onSuccess2 = function(data) {
                 // Do something with the returning data
                 	visitorID = data;
-                };
+			var xhr = new XMLHttpRequest();
+			xhr.addEventListener("readystatechange", function () {
+				if (this.readyState === 4) {
+					console.log(xhr.response);
+				}
+			});
+			var URLforGET = "https://vodafonebotdario.herokuapp.com/add?retrieve=1&visitorID=" + visitorID;
+			console.log(URLforGET);
+			xhr.open("GET", URLforGET);
+			xhr.send();
+		};
+
                 
                 var onError2 = function(data) {
                 // Do something with the returning data
