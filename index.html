@@ -67,6 +67,7 @@ button:hover {
 				// var jsonResult = JSON.parse(this.responseText);
             			document.getElementById("alert").innerHTML = "fatto!";
             			document.getElementById("alert").style = "color : green";
+				console.log(xhr.response);
           		}
         	});
         	var URLforGET = "https://vodafonebotdario.herokuapp.com/add?telefono=" + telefono + "&ricontatto=" + ricontatto + "&cfiscale=" + cfiscale + "&convID=" + convID;
