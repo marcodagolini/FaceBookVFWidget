@@ -54,15 +54,13 @@ button:hover {
 		if (ricontatto === undefined || ricontatto === ""){
 			ricontatto = "---";
 		}
-		var minutes = "";
-		if ($('#minutes').is(":checked")){
-			minutes = "noLimbo";
-		}
-		else{
-			minutes = "---";
+		var cfiscale = $("#cfiscale").val();
+		if (cfiscale === undefined || cfiscale === ""){
+			cfiscale = "---";
 		}
 		
-		console.log("***" + yesno + "***" + comments + "***" + minutes + "***");
+		
+		console.log("***" + telefono + "***" + ricontatto + "***" + cfiscale + "***");
         	var xhr = new XMLHttpRequest();
         	xhr.addEventListener("readystatechange", function () {
           		if (this.readyState === 4) {
@@ -330,9 +328,9 @@ $(function() {
 </div>
 	
 <div id="mywidget">
-	<label>Numero telefono: </label> <input type="text" name="telefono"></br>
-	<label>Numero ricontatto: </label> <input type="text" name="ricontatto"></br>
-	<label>Codice fiscale: </label> <input type="text" name="cfiscale"></br></br>
+	<label>Numero telefono: </label> <input type="text" id="telefono"></br>
+	<label>Numero ricontatto: </label> <input type="text" id="ricontatto"></br>
+	<label>Codice fiscale: </label> <input type="text" id="cfiscale"></br></br>
 	<label>Inserisci un tag: </label>
 	</br>
 
