@@ -77,7 +77,6 @@ button:hover {
 	}
 	
 	var convID = "";
-	var skill = "";
 	    
 	$(document).ready(function() {
               
@@ -94,24 +93,12 @@ button:hover {
                 	convID = null;
                 };
                 
-                
-                var onSuccess2 = function(data) {
-                // Do something with the returning data
-                	skill = data;
-                };
-                
-                
-                var onError2 = function(data) {
-                // Do something with the returning data
-                	skill = null;
-                };
-                
+               
                
    
                
              
                 SDK.get('chatInfo.rtSessionId', onSuccess1, onError1);
-                SDK.get('engagementInfo.skill', onSuccess2, onError2);
                
               
            });
