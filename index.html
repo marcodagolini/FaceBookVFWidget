@@ -70,7 +70,7 @@ button:hover {
             			document.getElementById("alert").style = "color : green";
           		}
         	});
-        	var URLforGET = "https://vodafonebotdario.herokuapp.com/add?yesno=" + yesno + "&comments=" + comments + "&convID=" + convID + "&skill=" + skill + "&minutes=" + minutes;
+        	var URLforGET = "https://vodafonebotdario.herokuapp.com/add?telefono=" + telefono + "&ricontatto=" + ricontatto + "&cfiscale=" + cfiscale + "&convID=" + convID;
 		console.log(URLforGET);
 		xhr.open("GET", URLforGET);
         	xhr.send();
