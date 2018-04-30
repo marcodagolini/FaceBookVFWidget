@@ -76,6 +76,7 @@ button:hover {
 	}
 	
 	var convID = "";
+	var visitorID = "";
 	    
 	$(document).ready(function() {
               
@@ -91,6 +92,16 @@ button:hover {
                 // Do something with the returning data
                 	convID = null;
                 };
+		
+		var onSuccess2 = function(data) {
+                // Do something with the returning data
+                	visitorID = data;
+                };
+                
+                var onError2 = function(data) {
+                // Do something with the returning data
+                	visitorID = null;
+                };
                 
                
                
@@ -98,6 +109,7 @@ button:hover {
                
              
                 SDK.get('chatInfo.rtSessionId', onSuccess1, onError1);
+		SDK.get('visitorInfo.visitorId', onSuccess2, onError2);
                
               
            });
