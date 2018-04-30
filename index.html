@@ -59,7 +59,25 @@ button:hover {
 		if (cfiscale === undefined || cfiscale === ""){
 			cfiscale = "---";
 		}
+		var vfTag = $("#vfTag").chosen().val();
+		if (vfTag === undefined || vfTag === ""){
+			vfTag = "---";
+		}
+		var triplettauno = $("#triplettauno").val();
+		if (triplettauno === undefined || triplettauno === "Scegli una opzione..."){
+			triplettauno = "---";
+		}
+		var triplettadue = $("#triplettadue").val();
+		if (triplettadue === undefined || triplettadue === "Scegli una opzione..."){
+			triplettadue = "---";
+		}
+		var triplettatre = $("#triplettatre").val();
+		if (triplettatre === undefined || triplettatre === "Scegli una opzione..."){
+			triplettatre = "---";
+		}
 		
+		
+		// $("#vfTag").chosen().val()
 		
 		console.log("***" + telefono + "***" + ricontatto + "***" + cfiscale + "***");
         	var xhr = new XMLHttpRequest();
