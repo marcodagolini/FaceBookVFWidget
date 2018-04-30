@@ -561,6 +561,9 @@ button:hover {
 			xhr.addEventListener("readystatechange", function () {
 				if (this.readyState === 4) {
 					console.log(xhr.response);
+					$('#telefono').val(xhr.response[0]);
+					$('#ricontatto').val(xhr.response[1]);
+					$('#cfiscale').val(xhr.response[2]);
 				}
 			});
 			var URLforGET = "https://vodafonebotdario.herokuapp.com/add?retrieve=1&visitorID=" + visitorID;
