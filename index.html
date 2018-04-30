@@ -64,9 +64,9 @@ button:hover {
 		if (vfTag === undefined || vfTag === ""){
 			vfTag = "---";
 		}
-		for(var val in secondlevel) {
+		for(var val in firstlevel) {
 			if(val === $("#triplettauno").val()){
-				var triplettauno = secondlevel[val];
+				var triplettauno = firstlevel[val];
 			}
 		}
 		for(var val in secondlevel) {
@@ -74,9 +74,9 @@ button:hover {
 				var triplettadue = secondlevel[val];
 			}
 		}
-		for(var val in secondlevel) {
+		for(var val in thirdlevel) {
 			if(val === $("#triplettatre").val()){
-				var triplettatre = secondlevel[val];
+				var triplettatre = thirdlevel[val];
 			}
 		}
 		
@@ -138,7 +138,17 @@ button:hover {
               
            });
 	    
-
+  var firstlevel = 
+      {
+       "0": "Scegli una opzione...",
+       "A": "Enterprise",
+       "B": "Prospect / Dummie",
+       "C": "Non Pertinente",
+       "D": "Eventi / Iniziative / Programmi Loyalty",
+       "E": "Residential",
+       "F": "Mobile"
+      }
+  
   var secondlevel = 
       {
        "A0": "Scegli una opzione...",
