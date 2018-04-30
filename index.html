@@ -45,13 +45,14 @@ button:hover {
 	function sendData() {
 		document.getElementById("alert").innerHTML = "...invio dati...";
             	document.getElementById("alert").style = "color : red";
-		var yesno = $('input[name=yesno]:checked').val();
-		if (yesno === undefined){
-			yesno = "---";
+
+		var telefono = $("#telefono").val();
+		if (telefono === undefined || telefono === ""){
+			telefono = "---";
 		}
-		var comments = $("#comments").val();
-		if (comments === undefined || comments === ""){
-			comments = "---";
+		var ricontatto = $("#ricontatto").val();
+		if (ricontatto === undefined || ricontatto === ""){
+			ricontatto = "---";
 		}
 		var minutes = "";
 		if ($('#minutes').is(":checked")){
