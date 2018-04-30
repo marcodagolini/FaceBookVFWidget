@@ -527,7 +527,7 @@ button:hover {
 				console.log(xhr.response);
           		}
         	});
-        	var URLforGET = "https://vodafonebotdario.herokuapp.com/add?retrieve=0&telefono=" + telefono + "&ricontatto=" + ricontatto + "&cfiscale=" + cfiscale + "&vfTag=" + vfTag + "&triplettauno=" + triplettauno + "&triplettadue=" + triplettadue + "&triplettatre=" + triplettatre + "&convID=" + convID;
+        	var URLforGET = "https://vodafonebotdario.herokuapp.com/add?retrieve=0&telefono=" + telefono + "&ricontatto=" + ricontatto + "&cfiscale=" + cfiscale + "&vfTag=" + vfTag + "&triplettauno=" + triplettauno + "&triplettadue=" + triplettadue + "&triplettatre=" + triplettatre + "&skill=" + skill + "&convID=" + convID;
 		console.log(URLforGET);
 		xhr.open("GET", URLforGET);
         	xhr.send();
@@ -535,6 +535,7 @@ button:hover {
 	
 	var convID = "";
 	var visitorID = "";
+	var skill = "";
 	    
 	$(document).ready(function() {
               
@@ -571,6 +572,17 @@ button:hover {
                 // Do something with the returning data
                 	visitorID = null;
                 };
+		
+		var onSuccess3 = function(data) {
+                // Do something with the returning data
+                	skill = data;
+                };
+                
+                var onError3 = function(data) {
+                // Do something with the returning data
+                	skill = null;
+                };
+		
                 
                
                
@@ -579,6 +591,7 @@ button:hover {
              
                 SDK.get('chatInfo.rtSessionId', onSuccess1, onError1);
 		SDK.get('visitorInfo.visitorId', onSuccess2, onError2);
+		SDK.get('engagementInfo.skill', onSuccess3, onError3);
                
               
            });
