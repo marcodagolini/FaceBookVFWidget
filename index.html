@@ -64,17 +64,20 @@ button:hover {
 		if (vfTag === undefined || vfTag === ""){
 			vfTag = "---";
 		}
-		var triplettauno = $("#triplettauno").val();
-		if (triplettauno === undefined || triplettauno === "Scegli una opzione..."){
-			triplettauno = "---";
+		for(var val in secondlevel) {
+			if(val === $("#triplettauno").val()){
+				var triplettauno = secondlevel[val];
+			}
 		}
-		var triplettadue = $("#triplettadue").val();
-		if (triplettadue === undefined || triplettadue === "Scegli una opzione..."){
-			triplettadue = "---";
+		for(var val in secondlevel) {
+			if(val === $("#triplettadue").val()){
+				var triplettadue = secondlevel[val];
+			}
 		}
-		var triplettatre = $("#triplettatre").val();
-		if (triplettatre === undefined || triplettatre === "Scegli una opzione..."){
-			triplettatre = "---";
+		for(var val in secondlevel) {
+			if(val === $("#triplettatre").val()){
+				var triplettatre = secondlevel[val];
+			}
 		}
 		
 		
@@ -135,14 +138,7 @@ button:hover {
               
            });
 	    
-	    
-	    
-      
-    </script>
-	
-	
- 
-<script type="text/javascript">
+
   var secondlevel = 
       {
        "A0": "Scegli una opzione...",
