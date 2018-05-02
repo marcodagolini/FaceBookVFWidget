@@ -785,9 +785,9 @@ button:hover {
      	
 
       var s = $('<select id="triplettadue"/>');
-      if(!(this.value.includes("0"))){
+      if(!(this.value.indexOf("0"))){
        for(var val in secondlevel) {
-        if(val.includes(this.value)){
+        if(val.indexOf(this.value)){
          $('<option />', {value: val, text: secondlevel[val]}).appendTo(s);
         }
        }
@@ -799,9 +799,9 @@ button:hover {
      	
 
       var s = $('<select id="triplettatre"/>');
-      if(!(this.value.includes("0"))){
+      if(!(this.value.indexOf("0"))){
        for(var val in thirdlevel) {
-        if(val.includes(this.value)){
+        if(val.indexOf(this.value)){
          $('<option />', {value: val, text: thirdlevel[val]}).appendTo(s);
         }
        }
