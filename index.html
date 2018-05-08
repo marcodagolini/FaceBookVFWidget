@@ -577,7 +577,7 @@ button:hover {
 							do{
 								var initialPosition = myXHR[3].indexOf(",");
 								var myValue = alreadyCut.substring(0, initialPosition);
-								alreadyCut = alreadyCut.substring(initialPosition);
+								alreadyCut = alreadyCut.substring(initialPosition + 1);
 								if(alreadyIn == 0){
 									stringForTags = stringForTags + '"' + myValue + '"';
 								} else{
@@ -586,7 +586,7 @@ button:hover {
 								alreadyIn = 1;
 							
 							} while(alreadyCut.indexOf(",") > -1);
-							stringForTags = stringForTags + "]";
+							stringForTags = stringForTags + ',"' + alreadyCut + '"]';
 							console.log("stringForTags: " + stringForTags);
 						
 						}
