@@ -600,7 +600,7 @@ button:hover {
 						for(var val in firstlevel) {
 							if(firstlevel[val] === myXHR[4]){
 								$("#triplettauno").prop("selectedIndex", triplettaunoposition).change();
-								return();
+								break;
 							}
 							triplettaunoposition = triplettaunoposition + 1;
 						}
