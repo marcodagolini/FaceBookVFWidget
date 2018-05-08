@@ -567,7 +567,10 @@ button:hover {
 					$('#telefono').val(myXHR[0]);
 					$('#ricontatto').val(myXHR[1]);
 					$('#cfiscale').val(myXHR[2]);
-					console.log(myXHR[3], myXHR[4], myXHR[5], myXHR[6]);
+					// if(myXHR[3].indexOf(",") > -1){
+					// }
+					
+					// console.log(myXHR[3], myXHR[4], myXHR[5], myXHR[6]);
 				}
 			});
 			var URLforGET = "https://vodafonebotdario.herokuapp.com/add?retrieve=1&visitorID=" + visitorID;
