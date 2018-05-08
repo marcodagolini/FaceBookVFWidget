@@ -780,6 +780,7 @@ button:hover {
   $( document ).ready(function() {
     $("#triplettauno").on('change', function() {
 	    $(".chzn-select").chosen().val("Messaggio Diretto,Richiesta dati mancanti");
+	    $('.chzn-select').trigger("chosen:updated");
      $("#triplettadue").remove();
      $("#triplettatre").remove();
      	
