@@ -567,28 +567,30 @@ button:hover {
 					$('#telefono').val(myXHR[0]);
 					$('#ricontatto').val(myXHR[1]);
 					$('#cfiscale').val(myXHR[2]);
-					if(myXHR[3].indexOf(",") == -1){
-						$(".chzn-select").val(myXHR[3]).trigger('chosen:updated');
-					} else{
-						var stringForTags = '[';
-						var alreadyCut = myXHR[3];
-						var alreadyIn = 0
-						do{
-							var initialPosition = myXHR[3].indexOf(",");
-							var myValue = alreadyCut.substring(0, initialPosition - 1);
-							alreadyCut = alreadyCut.substring(initialPosition + 1);
-							if(alreadyIn == 0){
+					if(myXHR[3] !== null){
+						if(myXHR[3].indexOf(",") == -1){
+							$(".chzn-select").val(myXHR[3]).trigger('chosen:updated');
+						} else{
+							var stringForTags = '[';
+							var alreadyCut = myXHR[3];
+							var alreadyIn = 0
+							do{
+								var initialPosition = myXHR[3].indexOf(",");
+								var myValue = alreadyCut.substring(0, initialPosition - 1);
+								alreadyCut = alreadyCut.substring(initialPosition + 1);
+								if(alreadyIn == 0){
+									stringForTags = stringForTags + '"' + myValue + '"';
+								} else{
+									stringForTags = stringForTags + ',"' + myValue + '"';
+								}
 								stringForTags = stringForTags + '"' + myValue + '"';
-							} else{
-								stringForTags = stringForTags + ',"' + myValue + '"';
-							}
-							stringForTags = stringForTags + '"' + myValue + '"';
-							alreadyIn = 1;
+								alreadyIn = 1;
 							
-						} while(myXHR[3].indexOf(",") > -1);
-						stringForTags = stringForTags + "]";
-						console.log("stringForTags: " + stringForTags);
+							} while(myXHR[3].indexOf(",") > -1);
+							stringForTags = stringForTags + "]";
+							console.log("stringForTags: " + stringForTags);
 						
+						}
 					}
 					
 					// console.log(myXHR[3], myXHR[4], myXHR[5], myXHR[6]);
