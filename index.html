@@ -597,8 +597,10 @@ button:hover {
 					
 					if(myXHR[4] !== null){
 						var triplettaunoposition = 0;
+						var triplettaunoname = "";
 						for(var val in firstlevel) {
 							if(firstlevel[val] === myXHR[4]){
+								triplettaunoname = val;
 								$("#triplettauno").prop("selectedIndex", triplettaunoposition).change();
 								break;
 							}
@@ -606,6 +608,19 @@ button:hover {
 						}
 					}
 					if(myXHR[5] !== null){
+						var triplettadueposition = 0;
+						var triplettaduename = "";
+						for(var val in secondlevel) {
+							if(val.indexOf(triplettaunoname) > -1){
+								if(secondlevel[val] === myXHR[5]){
+									triplettaduename = val;
+									$("#triplettadue").prop("selectedIndex", triplettadueposition).change();
+									break;
+								}
+							}
+							triplettadueposition = triplettadueposition + 1;
+						}
+						
 						// $('#triplettadue option:selected').text(myXHR[5]).change;
 					}
 					if(myXHR[6] !== null){
