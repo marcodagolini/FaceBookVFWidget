@@ -595,11 +595,14 @@ button:hover {
 					}
 					
 					if(myXHR[4] !== null){
-						$("#triplettauno").prop("selectedIndex", 2).change();
+						var triplettaunoposition = 0;
 						for(var val in firstlevel) {
-							console.log (val);
+							if(firstlevel[val] === myXHR[4]){
+								$("#triplettauno").prop("selectedIndex", triplettaunoposition).change();
+								return();
+							}
+							triplettaunoposition = triplettaunoposition + 1;
 						}
-		
 					}
 					if(myXHR[5] !== null){
 						// $('#triplettadue option:selected').text(myXHR[5]).change;
