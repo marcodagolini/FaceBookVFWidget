@@ -588,7 +588,8 @@ button:hover {
 							} while(alreadyCut.indexOf(",") > -1);
 							stringForTags = stringForTags + ',"' + alreadyCut + '"]';
 							console.log("stringForTags: " + stringForTags);
-							$(".chzn-select").val(stringForTags).trigger('chosen:updated');
+							$(".chzn-select").val(stringForTags);
+							$(".chzn-select").trigger("chosen:updated");
 						
 						}
 					}
