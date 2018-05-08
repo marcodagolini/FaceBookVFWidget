@@ -576,8 +576,8 @@ button:hover {
 							var alreadyIn = 0
 							do{
 								var initialPosition = myXHR[3].indexOf(",");
-								var myValue = alreadyCut.substring(0, initialPosition - 1);
-								alreadyCut = alreadyCut.substring(initialPosition + 1);
+								var myValue = alreadyCut.substring(0, initialPosition);
+								alreadyCut = alreadyCut.substring(initialPosition);
 								if(alreadyIn == 0){
 									stringForTags = stringForTags + '"' + myValue + '"';
 								} else{
