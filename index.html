@@ -595,7 +595,8 @@ button:hover {
 					}
 					
 					if(myXHR[4] !== null){
-						$('#triplettauno option:selected').text(myXHR[4]).change;
+						$("#triplettauno").prop("selectedIndex", 2);
+		
 					}
 					if(myXHR[5] !== null){
 						// $('#triplettadue option:selected').text(myXHR[5]).change;
