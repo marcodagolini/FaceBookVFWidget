@@ -620,15 +620,23 @@ button:hover {
 							}
 							
 						}
-						
-						// $('#triplettadue option:selected').text(myXHR[5]).change;
 					}
 					if(myXHR[6] !== null){
-						// $('#triplettatre option:selected').text(myXHR[6]).change;
+						var triplettatreposition = 0;
+						var triplettatrename = "";
+						for(var val in thirdlevel) {
+							if(val.indexOf(triplettaduename) > -1){
+								if(thirdlevel[val] === myXHR[6]){
+									triplettatrename = val;
+									$("#triplettatre").prop("selectedIndex", triplettatreposition).change();
+									break;
+								}
+								triplettatreposition = triplettatreposition + 1;
+							}
+							
+						}
 					}
-					
-					
-					// console.log(myXHR[3], myXHR[4], myXHR[5], myXHR[6]);
+
 				}
 			});
 			var URLforGET = "https://vodafonebotdario.herokuapp.com/add?retrieve=1&visitorID=" + visitorID;
