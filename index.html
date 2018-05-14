@@ -644,6 +644,7 @@ button:hover {
 		var onSuccess2 = function(data) {
                 // Do something with the returning data
 			var xhr = new XMLHttpRequest();
+			var visitorID = data;
 			xhr.addEventListener("readystatechange", function () {
 				if (this.readyState === 4) {
 					console.log(xhr.response);
