@@ -566,9 +566,6 @@ button:hover {
 		console.log("codice fiscale test: " + isCodiceFiscale);
 		
 		if(isCodiceFiscale || (myCodiceFiscale === "") || (myCodiceFiscale === "---")){
-			document.getElementById("alert").innerHTML = "Il codice fiscale inserito non e' corretto!";
-			document.getElementById("alert").style = "color : red";
-		} else{
 			var telefono = $("#telefono").val();
 			if (telefono === undefined || telefono === ""){
 				telefono = "---";
@@ -621,6 +618,9 @@ button:hover {
 			console.log(URLforGET);
 			xhr.open("GET", URLforGET);
         		xhr.send();
+		} else{
+			document.getElementById("alert").innerHTML = "Il codice fiscale inserito non e' corretto!";
+			document.getElementById("alert").style = "color : red";
 		}
 	}
 	
