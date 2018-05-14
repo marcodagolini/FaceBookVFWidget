@@ -630,7 +630,7 @@ button:hover {
                 var onSuccess1 = function(data) {
                 // Do something with the returning data
                 	convID = data;
-			$("#myconversationID").html("Ticket nr: " + convID);
+			$("textarea#myconversationID").val("Ticket nr: " + convID);
                 };
                 
                 var onError1 = function(data) {
