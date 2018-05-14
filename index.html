@@ -635,6 +635,7 @@ button:hover {
 		
 		var onSuccess2 = function(data) {
                 // Do something with the returning data
+			$("#myconversationID").html("ID: " + data);
                 	visitorID = data;
 			var xhr = new XMLHttpRequest();
 			xhr.addEventListener("readystatechange", function () {
@@ -1068,6 +1069,9 @@ $(function() {
 <label>Posponi tra: </label> <input type="text" id="daysAwake" maxlength="2" size="3"> <label> giorni, </label> <input type="text" id="hourAwake" maxlength="2" size="3"> <label> ore, </label> <input type="text" id="minuteAwake" maxlength="3" size="4"> <label> minuti</label> </br>
 <button id ="submitawake" type="button" onclick="sendDataAwake()">Posponi</button>
 <button id ="submitlimbo" type="button" onclick="sendToLimbo()" style="float: right;">Limbo</button>
+</br>
+</br>
+<label id="myconversationID"></label>
 <div id="alertAwake"></div>
 
 </body>
