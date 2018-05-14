@@ -3,7 +3,9 @@
 <style>		
 	
 
-	
+textarea {
+    resize: none;
+}	
 	
 	
 button {
@@ -1071,7 +1073,7 @@ $(function() {
 <button id ="submitlimbo" type="button" onclick="sendToLimbo()" style="float: right;">Limbo</button>
 </br>
 </br>
-<label id="myconversationID"></label>
+<textarea rows="5" cols="30" id="myconversationID" readonly></textarea>
 <div id="alertAwake"></div>
 
 </body>
