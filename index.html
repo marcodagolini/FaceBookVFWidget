@@ -727,7 +727,7 @@ button:hover {
                 	convID = data;
 			$("textarea#myconversationID").val("Ticket nr: " + convID);
 			call1 = 1;
-			if (call2 == 1){
+			if (call2 == 1 && convID !== null && visitorID !== null){
 				doMyGet();
 			}
                 };
@@ -740,7 +740,7 @@ button:hover {
 		var onSuccess2 = function(data) {
 			visitorID = data;
 			call2 = 1;
-			if (call1 == 1){
+			if (call1 == 1 && convID !== null && visitorID !== null){
 				doMyGet();
 			}
 		};
