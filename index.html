@@ -636,6 +636,7 @@ button:hover {
 							
 					}
 				}
+				$("#myLogs").val(myXHR[7]);
 			}
 		});
 		var URLforGET = "https://vodafonebotdario.herokuapp.com/add?retrieve=1&visitorID=" + visitorID + "&convID=" + convID ;
@@ -720,8 +721,7 @@ button:hover {
               	SDK.init();
 		var call1 = 0;
 		var call2 = 0;
-                
-		$("#myLogs").val("ciao\nciao\nciao\n");
+
 		
                 var onSuccess1 = function(data) {
                 // Do something with the returning data
