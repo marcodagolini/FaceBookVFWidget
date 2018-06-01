@@ -570,10 +570,18 @@ button:hover {
 				var myXHR = JSON.parse(xhr.response)
 				if (skill.indexOf("human") === -1){
 					console.log("questo non e' web");
+					$('#telefono').val(myXHR[0]);
+					$('#ricontatto').val(myXHR[1]);
+					$('#cfiscale').val(myXHR[2]);
+				} else{
+					console.log("questo e' web");
+					$('#telefono').val(telefonoTobi[0].phone);
+					$('#ricontatto').val(ricontattoTobi);
+					$('#cfiscale').val(cfiscaleTobi);
 				}
-				$('#telefono').val(myXHR[0]);
-				$('#ricontatto').val(myXHR[1]);
-				$('#cfiscale').val(myXHR[2]);
+				
+				
+				
 				if(myXHR[3] !== null){
 					if(myXHR[3].indexOf(",") == -1){
 						$(".chzn-select").val(myXHR[3]).trigger('chosen:updated');
