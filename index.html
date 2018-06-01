@@ -486,6 +486,9 @@ button:hover {
 	var visitorID = "";
 	var skill = "";
 	var agentID = "";
+	var telefonoTobi = "";
+	var ricontattoTobi = "";
+	var cfiscaleTobi = "";
 	
 	function sendToLimbo() {
 		document.getElementById("alertAwake").innerHTML = "...invio nel Limbo...";
@@ -774,7 +777,40 @@ button:hover {
                 	agentID = null;
                 };
 		
+		var onSuccess5 = function(data) {
+                // Do something with the returning data
+			cfiscaleTobi = data;
+                	console.log("*****: " + data);
+                };
                 
+                var onError5 = function(data) {
+                // Do something with the returning data
+                	cfiscaleTobi = null;
+                };
+		
+		var onSuccess6 = function(data) {
+                // Do something with the returning data
+			ricontattoTobi = data;
+                	console.log("*****: " + data);
+                };
+                
+                var onError6 = function(data) {
+                // Do something with the returning data
+                	ricontattoTobi = null;
+                };
+		
+		var onSuccess7 = function(data) {
+                // Do something with the returning data
+			telefonoTobi = data;
+                	console.log("*****: " + data);
+                };
+                
+                var onError7 = function(data) {
+                // Do something with the returning data
+                	telefonoTobi = null;
+                };
+		
+
                
                
    
@@ -784,6 +820,9 @@ button:hover {
 		SDK.get('visitorInfo.visitorId', onSuccess2, onError2);
 		SDK.get('engagementInfo.skill', onSuccess3, onError3);
 		SDK.get('agentInfo.agentId', onSuccess4, onError4);
+		SDK.get('authenticatedData.customerDetails.customerId', onSuccess5, onError5); //codice fiscale
+		SDK.get('authenticatedData.customerDetails.imei', onSuccess6, onError6); //ricontatto
+		SDK.get('authenticatedData.personalInfo.contactInfo[0].phone', onSuccess7, onError7); //telefono
                
               
            });
