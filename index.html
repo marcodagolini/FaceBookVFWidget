@@ -777,6 +777,8 @@ button:hover {
                 	agentID = null;
                 };
 		
+		/*************
+		
 		var onSuccess5 = function(data) {
                 // Do something with the returning data
 			cfiscaleTobi = data;
@@ -810,6 +812,8 @@ button:hover {
                 	telefonoTobi = null;
                 };
 		
+		*************/
+		
 
                
                
@@ -820,9 +824,9 @@ button:hover {
 		SDK.get('visitorInfo.visitorId', onSuccess2, onError2);
 		SDK.get('engagementInfo.skill', onSuccess3, onError3);
 		SDK.get('agentInfo.agentId', onSuccess4, onError4);
-		SDK.get('authenticatedData.customerDetails.customerId', onSuccess5, onError5); //codice fiscale
-		SDK.get('authenticatedData.customerDetails.imei', onSuccess6, onError6); //ricontatto
-		SDK.get('authenticatedData.personalInfo.contactInfo[0].phone', onSuccess7, onError7); //telefono
+		// SDK.get('authenticatedData.customerDetails.customerId', onSuccess5, onError5); //codice fiscale
+		// SDK.get('authenticatedData.customerDetails.imei', onSuccess6, onError6); //ricontatto
+		// SDK.get('authenticatedData.personalInfo.contactInfo[0].phone', onSuccess7, onError7); //telefono
                
               
            });
