@@ -568,6 +568,7 @@ button:hover {
 			if (this.readyState === 4) {
 				console.log(xhr.response);
 				var myXHR = JSON.parse(xhr.response)
+				console.log(visitorID);
 				if (visitorID.indexOf("acebook") > -1){
 					console.log("questo non e' web");
 					$('#telefono').val(myXHR[0]);
