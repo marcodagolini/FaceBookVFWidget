@@ -2,9 +2,9 @@
  
 <style>		
 	
-
-
-
+	
+	
+	
 	
 	
 textarea {
@@ -32,6 +32,12 @@ button {
 button:hover {
     background-color: #da7009;
     color: white;	
+}
+	
+button:disabled,
+button[disabled]{
+  background-color: #f68a1f;
+  opacity: 0.5;
 }
 	
 .chosen-container {
@@ -488,6 +494,8 @@ button:hover {
 	var telefonoTobi = "";
 	var ricontattoTobi = "";
 	var cfiscaleTobi = "";
+	var assignedAgent = "";
+	var thisAgent = "";
 	
 	function sendToLimbo() {
 		document.getElementById("alertAwake").innerHTML = "...invio nel Limbo...";
@@ -737,7 +745,8 @@ button:hover {
               	SDK.init();
 		var call1 = 0;
 		var call2 = 0;
-
+		var call3 = 0;
+		var call4 = 0;
 		
                 var onSuccess1 = function(data) {
                 // Do something with the returning data
@@ -822,8 +831,46 @@ button:hover {
                 	telefonoTobi = null;
                 };
 		
+		var onSuccess8 = function(data) {
+                // Do something with the returning data
+			assignedAgent = data;
+			console.log("assigned: " + assignedAgent);
+			call3 = 1;
+			if (call4 == 1 && assignedAgent !== null && thisAgent !== null){
+				if( assignedAgent === thisAgent){
+					$("#submit").prop( "disabled", false );
+					$("#submitawake").prop( "disabled", false );
+					$("#submitlimbo").prop( "disabled", false );
+				}
+				
+			}
+                };
+                
+                var onError8 = function(data) {
+                // Do something with the returning data
+                	assignedAgent = null;
+                };
 		
-
+		var onSuccess9 = function(data) {
+                // Do something with the returning data
+			thisAgent = data;
+			console.log("thisAgent: " + thisAgent);
+			call4 = 1;
+			if (call3 == 1 && assignedAgent !== null && thisAgent !== null){
+				if( assignedAgent === thisAgent){
+					$("#submit").prop( "disabled", false );
+					$("#submitawake").prop( "disabled", false );
+					$("#submitlimbo").prop( "disabled", false );
+				}
+			}
+                };
+                
+                var onError9 = function(data) {
+                // Do something with the returning data
+                	thisAgent = null;
+                };
+		
+		
                
                
    
@@ -836,6 +883,8 @@ button:hover {
 		SDK.get('authenticatedData.customerDetails.customerId', onSuccess5, onError5); //codice fiscale
 		SDK.get('authenticatedData.customerDetails.imei', onSuccess6, onError6); //ricontatto
 		SDK.get('authenticatedData.personalInfo.contactInfo', onSuccess7, onError7); //telefono
+		SDK.get('agentInfo.agentId', onSuccess8, onError8); //currentagent
+		SDK.get('chattingAgentInfo.agentId', onSuccess9, onError9); //agentassigned
                
               
            });
@@ -1142,7 +1191,7 @@ $(function() {
 
   </br>
               
-   <button id ="submit" type="button" onclick="sendData()">Invia Dati</button>
+   <button id ="submit" type="button" onclick="sendData()" disabled>Invia Dati</button>
    <div id="alert"></div>
 
 </div>
@@ -1152,8 +1201,8 @@ $(function() {
 <label>Posponi tra: </br>
 </label> <input type="text" id="daysAwake" maxlength="2" size="3"> <label> giorni, </label> <input type="text" id="hourAwake" maxlength="2" size="3"> <label> ore, </label> <input type="text" id="minuteAwake" maxlength="3" size="4"> <label> minuti</label> </br>
 </br>
-<button id ="submitawake" type="button" onclick="sendDataAwake()">Posponi</button>
-<button id ="submitlimbo" type="button" onclick="sendToLimbo()" style="float: right;">Limbo</button>
+<button id ="submitawake" type="button" onclick="sendDataAwake()" disabled>Posponi</button>
+<button id ="submitlimbo" type="button" onclick="sendToLimbo()" style="float: right;" disabled>Limbo</button>
 </br>
 </br>
 <div id="alertAwake"></div>
