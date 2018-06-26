@@ -600,7 +600,7 @@ button[disabled]{
 						var alreadyCut = myXHR[3];
 						var alreadyIn = 0
 						do{
-							var initialPosition = myXHR[3].indexOf(",");
+							var initialPosition = alreadyCut.indexOf(",");
 							var myValue = alreadyCut.substring(0, initialPosition);
 							alreadyCut = alreadyCut.substring(initialPosition + 1);
 							if(alreadyIn == 0){
