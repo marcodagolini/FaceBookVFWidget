@@ -735,17 +735,14 @@ button[disabled]{
 					if(xhr.response === "inviato"){
 						document.getElementById("alert").innerHTML = "fatto!";
 						document.getElementById("alert").style = "color : green";
+						setTimeout(function(){
+							document.getElementById("alert").innerHTML = "";
+						}, 3000);
 					} else{
 						document.getElementById("alert").innerHTML = "dati non inviati!";
 						document.getElementById("alert").style = "color : red";
 					}
 					// var jsonResult = JSON.parse(this.responseText);
-            				
-            				
-					
-					setTimeout(function(){
-						document.getElementById("alert").innerHTML = "";
-					}, 3000);
           			}
         		});
         		var URLforGET = "https://vodafonebotdario.herokuapp.com/add?retrieve=0&telefono=" + telefono + "&ricontatto=" + ricontatto + "&cfiscale=" + cfiscale + "&vfTag=" + vfTag + "&triplettauno=" + triplettauno + "&triplettadue=" + triplettadue + "&triplettatre=" + triplettatre + "&skill=" + skill + "&convID=" + convID;
