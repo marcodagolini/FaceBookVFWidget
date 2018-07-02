@@ -573,7 +573,10 @@ button[disabled]{
 		var xhr = new XMLHttpRequest();
 		xhr.addEventListener("readystatechange", function () {
 			if (this.readyState === 4) {
-				if (typeof xhr.response === 'object'){
+				if (xhr.response === "errore"){
+					document.getElementById("alert").innerHTML = "Errore nel recupero dati!";
+					document.getElementById("alert").style = "color : red";
+				} else{
 					document.getElementById("alert").innerHTML = "Dati recuperati con successo!";
 					document.getElementById("alert").style = "color : green";
 					setTimeout(function(){
@@ -664,10 +667,8 @@ button[disabled]{
 						}
 					}
 					$("#myLogs").val(myXHR[7]);
-				} else{
-					document.getElementById("alert").innerHTML = "Errore nel recupero dati!";
-					document.getElementById("alert").style = "color : red";
 				}
+					
 			}
 		});
 		var URLforGET = "https://vodafonebotdario.herokuapp.com/add?retrieve=1&visitorID=" + visitorID + "&convID=" + convID ;
