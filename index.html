@@ -573,6 +573,7 @@ button[disabled]{
 		var xhr = new XMLHttpRequest();
 		xhr.addEventListener("readystatechange", function () {
 			if (this.readyState === 4) {
+				console.log(xhr.response);
 				if (xhr.response === "errore"){
 					document.getElementById("alert").innerHTML = "Errore nel recupero dati!";
 					document.getElementById("alert").style = "color : red";
@@ -582,7 +583,6 @@ button[disabled]{
 					setTimeout(function(){
 						document.getElementById("alert").innerHTML = "";
 					}, 3000)
-					console.log(xhr.response);
 					var myXHR = JSON.parse(xhr.response)
 					console.log(cfiscaleTobi);
 					if (cfiscaleTobi.indexOf("acebook") > -1){
