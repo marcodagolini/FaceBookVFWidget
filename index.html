@@ -575,7 +575,7 @@ button[disabled]{
 		xhr.addEventListener("readystatechange", function () {
 			if (this.readyState === 4) {
 				console.log(xhr.response);
-				if (xhr.response === "errore"){
+				if (xhr.response === "errore" || xhr.response === ""){
 					document.getElementById("alert").innerHTML = "Errore nel recupero dati!";
 					document.getElementById("alert").style = "color : red";
 				} else{
