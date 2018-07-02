@@ -573,104 +573,101 @@ button[disabled]{
 		var xhr = new XMLHttpRequest();
 		xhr.addEventListener("readystatechange", function () {
 			if (this.readyState === 4) {
-				document.getElementById("alert").innerHTML = "Dati recuperati con successo!";
-				document.getElementById("alert").style = "color : green";
-				setTimeout(function(){
-					document.getElementById("alert").innerHTML = "";
-				}, 3000)
-				console.log(xhr.response);
-				var myXHR = JSON.parse(xhr.response)
-				console.log(cfiscaleTobi);
-				if (cfiscaleTobi.indexOf("acebook") > -1){
-					console.log("questo non e' web");
-					$('#telefono').val(myXHR[0]);
-					$('#ricontatto').val(myXHR[1]);
-					$('#cfiscale').val(myXHR[2]);
-				} else{
-					console.log("questo e' web");
-					$('#telefono').val(telefonoTobi[0].phone);
-					$('#ricontatto').val(ricontattoTobi);
-					$('#cfiscale').val(cfiscaleTobi);
-				}
-				
-				
-				
-				if(myXHR[3] !== null){
-					
-					
-					
-						
-					
-					if(myXHR[3].indexOf(",") == -1){
-						$(".chzn-select").val(myXHR[3]).trigger('chosen:updated');
+				if (typeof xhr.response === 'object'){
+					document.getElementById("alert").innerHTML = "Dati recuperati con successo!";
+					document.getElementById("alert").style = "color : green";
+					setTimeout(function(){
+						document.getElementById("alert").innerHTML = "";
+					}, 3000)
+					console.log(xhr.response);
+					var myXHR = JSON.parse(xhr.response)
+					console.log(cfiscaleTobi);
+					if (cfiscaleTobi.indexOf("acebook") > -1){
+						console.log("questo non e' web");
+						$('#telefono').val(myXHR[0]);
+						$('#ricontatto').val(myXHR[1]);
+						$('#cfiscale').val(myXHR[2]);
 					} else{
-						var stringForTags = '[';
-						var alreadyCut = myXHR[3];
-						var alreadyIn = 0
-						do{
-							var initialPosition = alreadyCut.indexOf(",");
-							var myValue = alreadyCut.substring(0, initialPosition);
-							alreadyCut = alreadyCut.substring(initialPosition + 1);
-							if(alreadyIn == 0){
-								stringForTags = stringForTags + '"' + myValue + '"';
-							} else{
-								stringForTags = stringForTags + ',"' + myValue + '"';
-							}
-							alreadyIn = 1;
+						console.log("questo e' web");
+						$('#telefono').val(telefonoTobi[0].phone);
+						$('#ricontatto').val(ricontattoTobi);
+						$('#cfiscale').val(cfiscaleTobi);
+					}
+					if(myXHR[3] !== null){
+						if(myXHR[3].indexOf(",") == -1){
+							$(".chzn-select").val(myXHR[3]).trigger('chosen:updated');
+						} else{
+							var stringForTags = '[';
+							var alreadyCut = myXHR[3];
+							var alreadyIn = 0
+							do{
+								var initialPosition = alreadyCut.indexOf(",");
+								var myValue = alreadyCut.substring(0, initialPosition);
+								alreadyCut = alreadyCut.substring(initialPosition + 1);
+								if(alreadyIn == 0){
+									stringForTags = stringForTags + '"' + myValue + '"';
+								} else{
+									stringForTags = stringForTags + ',"' + myValue + '"';
+								}
+								alreadyIn = 1;
 							
-						} while(alreadyCut.indexOf(",") > -1);
-						stringForTags = stringForTags + ',"' + alreadyCut + '"]';
-						console.log("stringForTags: " + stringForTags);
-						stringForTags = JSON.parse(stringForTags);
-						$(".chzn-select").val(stringForTags);
-						$(".chzn-select").trigger("chosen:updated");
+							} while(alreadyCut.indexOf(",") > -1);
+							stringForTags = stringForTags + ',"' + alreadyCut + '"]';
+							console.log("stringForTags: " + stringForTags);
+							stringForTags = JSON.parse(stringForTags);
+							$(".chzn-select").val(stringForTags);
+							$(".chzn-select").trigger("chosen:updated");
 						
+						}
 					}
-				}
 					
-				if(myXHR[4] !== null){
-					var triplettaunoposition = 0;
-					var triplettaunoname = "";
-					for(var val in firstlevel) {
-						if(firstlevel[val] === myXHR[4]){
-							triplettaunoname = val;
-							$("#triplettauno").prop("selectedIndex", triplettaunoposition).change();
-							break;
-						}
-						triplettaunoposition = triplettaunoposition + 1;
-					}
-				}
-				if(myXHR[5] !== null){
-					var triplettadueposition = 0;
-					var triplettaduename = "";
-					for(var val in secondlevel) {
-						if(val.indexOf(triplettaunoname) > -1){
-							if(secondlevel[val] === myXHR[5]){
-								triplettaduename = val;
-								$("#triplettadue").prop("selectedIndex", triplettadueposition).change();
+					if(myXHR[4] !== null){
+						var triplettaunoposition = 0;
+						var triplettaunoname = "";
+						for(var val in firstlevel) {
+							if(firstlevel[val] === myXHR[4]){
+								triplettaunoname = val;
+								$("#triplettauno").prop("selectedIndex", triplettaunoposition).change();
 								break;
 							}
-							triplettadueposition = triplettadueposition + 1;
+							triplettaunoposition = triplettaunoposition + 1;
 						}
-							
 					}
-				}
-				if(myXHR[6] !== null){
-					var triplettatreposition = 0;
-					var triplettatrename = "";
-					for(var val in thirdlevel) {
-						if(val.indexOf(triplettaduename) > -1){
-							if(thirdlevel[val] === myXHR[6]){
-								triplettatrename = val;
-								$("#triplettatre").prop("selectedIndex", triplettatreposition).change();
-								break;
+					if(myXHR[5] !== null){
+						var triplettadueposition = 0;
+						var triplettaduename = "";
+						for(var val in secondlevel) {
+							if(val.indexOf(triplettaunoname) > -1){
+								if(secondlevel[val] === myXHR[5]){
+									triplettaduename = val;
+									$("#triplettadue").prop("selectedIndex", triplettadueposition).change();
+									break;
+								}
+								triplettadueposition = triplettadueposition + 1;
 							}
-							triplettatreposition = triplettatreposition + 1;
-						}
 							
+						}
 					}
+					if(myXHR[6] !== null){
+						var triplettatreposition = 0;
+						var triplettatrename = "";
+						for(var val in thirdlevel) {
+							if(val.indexOf(triplettaduename) > -1){
+								if(thirdlevel[val] === myXHR[6]){
+									triplettatrename = val;
+									$("#triplettatre").prop("selectedIndex", triplettatreposition).change();
+									break;
+								}
+								triplettatreposition = triplettatreposition + 1;
+							}
+							
+						}
+					}
+					$("#myLogs").val(myXHR[7]);
+				} else{
+					document.getElementById("alert").innerHTML = "Errore nel recupero dati!";
+					document.getElementById("alert").style = "color : red";
 				}
-				$("#myLogs").val(myXHR[7]);
 			}
 		});
 		var URLforGET = "https://vodafonebotdario.herokuapp.com/add?retrieve=1&visitorID=" + visitorID + "&convID=" + convID ;
