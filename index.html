@@ -588,9 +588,12 @@ button[disabled]{
 					console.log(cfiscaleTobi);
 					if (routing.indexOf("acebook") > -1){
 						console.log("questo e' facebook");
-						$('#telefono').val(myXHR[0]);
-						$('#ricontatto').val(myXHR[1]);
-						$('#cfiscale').val(myXHR[2]);
+						// $('#telefono').val(myXHR[0]);
+						// $('#ricontatto').val(myXHR[1]);
+						// $('#cfiscale').val(myXHR[2]);
+						$('#telefono').val(telefonoTobi[0].phone);
+						$('#ricontatto').val(ricontattoTobi);
+						$('#cfiscale').val(cfiscaleTobi);
 					} else{
 						console.log("questo e' web");
 						$('#telefono').val(telefonoTobi[0].phone);
