@@ -2,9 +2,7 @@
  
 <style>		
 	
-
-
-
+	
 	
 	
 textarea {
@@ -496,6 +494,7 @@ button[disabled]{
 	var cfiscaleTobi = "";
 	var assignedAgent = "";
 	var thisAgent = "";
+	var routing = "";
 	
 	function sendToLimbo() {
 		document.getElementById("alertAwake").innerHTML = "...invio nel Limbo...";
@@ -586,8 +585,8 @@ button[disabled]{
 					}, 3000)
 					var myXHR = JSON.parse(xhr.response)
 					console.log(cfiscaleTobi);
-					if (cfiscaleTobi.indexOf("acebook") > -1){
-						console.log("questo non e' web");
+					if (routing.indexOf("acebook") > -1){
+						console.log("questo e' facebook");
 						$('#telefono').val(myXHR[0]);
 						$('#ricontatto').val(myXHR[1]);
 						$('#cfiscale').val(myXHR[2]);
@@ -765,13 +764,14 @@ button[disabled]{
 		var call2 = 0;
 		var call3 = 0;
 		var call4 = 0;
+		var call5 = 0;
 		
                 var onSuccess1 = function(data) {
                 // Do something with the returning data
                 	convID = data;
 			$("textarea#myconversationID").val("Ticket nr: " + convID);
 			call1 = 1;
-			if (call2 == 1 && convID !== null && visitorID !== null){
+			if (call2 == 1 && call5 == 1 && convID !== null && visitorID !== null){
 				doMyGet();
 			}
                 };
@@ -784,7 +784,7 @@ button[disabled]{
 		var onSuccess2 = function(data) {
 			visitorID = data;
 			call2 = 1;
-			if (call1 == 1 && convID !== null && visitorID !== null){
+			if (call1 == 1 && call5 == 1 && convID !== null && visitorID !== null){
 				doMyGet();
 			}
 		};
@@ -888,6 +888,21 @@ button[disabled]{
                 	thisAgent = null;
                 };
 		
+		var onSuccess10 = function(data) {
+                // Do something with the returning data
+			routing = data;
+			call5 = 1;
+			if (call1 == 1 && call2 == 1 && convID !== null && visitorID !== null){
+				doMyGet();
+			}
+                	console.log("*****: " + data);
+                };
+                
+                var onError10 = function(data) {
+                // Do something with the returning data
+                	routing = null;
+                };
+		
 		
                
                
@@ -903,6 +918,7 @@ button[disabled]{
 		SDK.get('authenticatedData.personalInfo.contactInfo', onSuccess7, onError7); //telefono
 		SDK.get('agentInfo.agentId', onSuccess8, onError8); //currentagent
 		SDK.get('chattingAgentInfo.agentId', onSuccess9, onError9); //agentassigned
+		SDK.get('authenticatedData.customerDetails.ctype', onSuccess10, onError10); //routing
                
               
            });
