@@ -11,7 +11,7 @@ textarea {
 }	
 	
 	
-button {
+.web-button {
     background-color: #f68a1f;
     border: none;
     color: white;
@@ -27,14 +27,42 @@ button {
     transition-duration: 0.4s;
 	  font-family: "Myriad pro","Trebuchet MS","Lucida Grande","Lucida Sans Unicode","Lucida Sans",sans-serif;
 }
-button:hover {
+.web-button:hover {
     background-color: #da7009;
     color: white;	
 }
 	
-button:disabled,
-button[disabled]{
+.web-button:disabled,
+.web-button[disabled]{
   background-color: #f68a1f;
+  opacity: 0.5;
+}
+	
+	
+.facebook-button {
+    background-color: #425fb4;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 4px;
+    cursor: pointer;
+	  border-radius: 4px;
+	  -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+	  font-family: "Myriad pro","Trebuchet MS","Lucida Grande","Lucida Sans Unicode","Lucida Sans",sans-serif;
+}
+.facebook-button:hover {
+    background-color: #08093c;
+    color: white;	
+}
+	
+.facebook-button:disabled,
+.facebook-button[disabled]{
+  background-color: #425fb4;
   opacity: 0.5;
 }
 	
@@ -587,6 +615,10 @@ button[disabled]{
 					console.log(cfiscaleTobi);
 					if (routing.indexOf("acebook") > -1){
 						console.log("questo e' facebook");
+						$("#submit").addClass('facebook-button').removeClass('web-button');
+						$("#submitawake").addClass('facebook-button').removeClass('web-button');
+						$("#submitlimbo").addClass('facebook-button').removeClass('web-button');
+						
 						// $('#telefono').val(myXHR[0]);
 						// $('#ricontatto').val(myXHR[1]);
 						// $('#cfiscale').val(myXHR[2]);
@@ -1231,7 +1263,7 @@ $(function() {
 
   </br>
               
-   <button id ="submit" type="button" onclick="sendData()" disabled>Invia Dati</button>
+   <button id ="submit" class="web-button" type="button" onclick="sendData()" disabled>Invia Dati</button>
    <div id="alert"></div>
 
 </div>
@@ -1241,8 +1273,8 @@ $(function() {
 <label>Posponi tra: </br>
 </label> <input type="text" id="daysAwake" maxlength="2" size="3"> <label> giorni, </label> <input type="text" id="hourAwake" maxlength="2" size="3"> <label> ore, </label> <input type="text" id="minuteAwake" maxlength="3" size="4"> <label> minuti</label> </br>
 </br>
-<button id ="submitawake" type="button" onclick="sendDataAwake()" disabled>Posponi</button>
-<button id ="submitlimbo" type="button" onclick="sendToLimbo()" style="float: right;" disabled>Limbo</button>
+<button id ="submitawake" class="web-button" type="button" onclick="sendDataAwake()" disabled>Posponi</button>
+<button id ="submitlimbo" class="web-button" type="button" onclick="sendToLimbo()" style="float: right;" disabled>Limbo</button>
 </br>
 </br>
 <div id="alertAwake"></div>
