@@ -622,17 +622,42 @@ textarea {
 						$("#submitawake").addClass('facebook-button').removeClass('web-button');
 						$("#submitlimbo").addClass('facebook-button').removeClass('web-button');
 						
-						// $('#telefono').val(myXHR[0]);
-						// $('#ricontatto').val(myXHR[1]);
-						// $('#cfiscale').val(myXHR[2]);
-						$('#telefono').val(telefonoTobi[0].phone);
-						$('#ricontatto').val(ricontattoTobi);
-						// $('#cfiscale').val(cfiscaleTobi);
+						if(myXHR[0] === "---"){
+							$('#telefono').val(telefonoTobi[0].phone);
+						}else{
+							$('#telefono').val(myXHR[0]);
+						}
+						
+						if(myXHR[1] === "---"){
+							$('#ricontatto').val(ricontattoTobi);
+						}else{
+							$('#ricontatto').val(myXHR[1]);
+						}
+						
+						if(myXHR[2] === "---"){
+							$('#cfiscale').val("");
+						}else{
+							$('#cfiscale').val(myXHR[2]);
+						}
 					} else{
 						console.log("questo e' web");
-						$('#telefono').val(telefonoTobi[0].phone);
-						$('#ricontatto').val(ricontattoTobi);
-						$('#cfiscale').val(cfiscaleTobi);
+						if(myXHR[0] === "---"){
+							$('#telefono').val(telefonoTobi[0].phone);
+						}else{
+							$('#telefono').val(myXHR[0]);
+						}
+						
+						if(myXHR[1] === "---"){
+							$('#ricontatto').val(ricontattoTobi);
+						}else{
+							$('#ricontatto').val(myXHR[1]);
+						}
+						
+						if(myXHR[2] === "---"){
+							$('#cfiscale').val(cfiscaleTobi);
+						}else{
+							$('#cfiscale').val(myXHR[2]);
+						}
 					}
 					if(myXHR[3] !== null){
 						if(myXHR[3].indexOf(",") == -1){
