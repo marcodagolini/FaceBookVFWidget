@@ -530,6 +530,14 @@ textarea {
 	function messageNPS() {
 		var channelNPS;
 		var channelType;
+		var myForm = "";
+		
+		if (routing.indexOf("acebook") > -1){
+			myForm = "4313";
+		} else{
+			myForm = "3412";
+		}
+		
 		if (skill.indexOf("acebook") > -1){
 			channelNPS = "facebook";
 		}
@@ -551,7 +559,7 @@ textarea {
 		if (agentGroup === "Main Group"){
 			agentGroup = "Main_Group";
 		}
-		var myCustomMSG = "Ti ringrazio di avere utilizzato il nostro servizio Facebook, ti rimetto in contatto con TOBi, se avrai bisogno di altre informazioni puoi chiedergliele direttamente! \n\nTi ricordo che cliccando sul link seguente puoi esprimere il tuo parere su quanto hai gradito il supporto che ti ho fornito. Per me è molto importante ricevere la tua risposta e che la tua soddisfazione sia massima! Ci conto :-) \n\nhttps://assets.kampyle.com/clients/vodafone/direct/form.html?region=prodEuIrland&websiteId=67241&formId=4313&caseID=" + convID + "&channel=" + channelNPS + "&group=" + agentGroup + "&type=" +  channelType;
+		var myCustomMSG = "Ti ringrazio di avere utilizzato il nostro servizio Facebook, ti rimetto in contatto con TOBi, se avrai bisogno di altre informazioni puoi chiedergliele direttamente! \n\nTi ricordo che cliccando sul link seguente puoi esprimere il tuo parere su quanto hai gradito il supporto che ti ho fornito. Per me è molto importante ricevere la tua risposta e che la tua soddisfazione sia massima! Ci conto :-) \n\nhttps://assets.kampyle.com/clients/vodafone/direct/form.html?region=prodEuIrland&websiteId=67241&formId=" + myForm + "&caseID=" + convID + "&channel=" + channelNPS + "&group=" + agentGroup + "&type=" +  channelType;
 		
 		var cmdName = lpTag.agentSDK.cmdNames.write;
 		var data = {text: myCustomMSG};
