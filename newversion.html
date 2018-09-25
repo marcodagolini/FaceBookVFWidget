@@ -525,6 +525,28 @@ textarea {
 	var assignedAgent = "";
 	var thisAgent = "";
 	var routing = "";
+	var agentGroup = "";
+	
+	function askForGroup() {
+		document.getElementById("alert").innerHTML = "...in attesa del link...";
+            	document.getElementById("alert").style = "color : red";
+		var xhr = new XMLHttpRequest();
+        	xhr.addEventListener("readystatechange", function () {
+          		if (this.readyState === 4) {
+				// var jsonResult = JSON.parse(this.responseText);
+            			document.getElementById("alert").innerHTML = "fatto!";
+            			document.getElementById("alert").style = "color : green";
+				console.log(xhr.response);
+				setTimeout(function(){
+					document.getElementById("alert").innerHTML = "";
+				}, 3000);
+          		}	
+        	});
+        	var URLforGET = "https://vodafonebotdario.herokuapp.com/add?retrieve=3&group=" + agentGroup;
+		console.log(URLforGET);
+		xhr.open("GET", URLforGET);
+        	xhr.send();
+	}
 	
 	function sendToLimbo() {
 		document.getElementById("alertAwake").innerHTML = "...invio nel Limbo...";
@@ -966,6 +988,16 @@ textarea {
                 };
 		
 		
+		var onSuccess11 = function(data) {
+                // Do something with the returning data
+			agentGroup = data;
+			
+                };
+                
+                var onError11 = function(data) {
+                // Do something with the returning data
+                	agentGroup = null;
+                };
                
                
    
@@ -981,6 +1013,7 @@ textarea {
 		SDK.get('agentInfo.agentId', onSuccess8, onError8); //currentagent
 		SDK.get('chattingAgentInfo.agentId', onSuccess9, onError9); //agentassigned
 		SDK.get('authenticatedData.customerDetails.type', onSuccess10, onError10); //routing
+		SDK.get('chattingAgentInfo.agentGroupName', onSuccess11, onError11); //group
                
               
            });
