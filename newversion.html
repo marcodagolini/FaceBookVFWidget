@@ -528,25 +528,39 @@ textarea {
 	var routing = "";
 	var agentGroup = "";
 	
-	function askForGroup() {
-		document.getElementById("alert").innerHTML = "...in attesa del link...";
-            	document.getElementById("alert").style = "color : red";
-		var xhr = new XMLHttpRequest();
-        	xhr.addEventListener("readystatechange", function () {
-          		if (this.readyState === 4) {
-				// var jsonResult = JSON.parse(this.responseText);
-            			document.getElementById("alert").innerHTML = "fatto!";
-            			document.getElementById("alert").style = "color : green";
-				console.log(xhr.response);
-				setTimeout(function(){
-					document.getElementById("alert").innerHTML = "";
-				}, 3000);
-          		}	
-        	});
-        	var URLforGET = "https://vodafonebotdario.herokuapp.com/add?retrieve=4&group=" + agentGroup;
-		console.log(URLforGET);
-		xhr.open("GET", URLforGET);
-        	xhr.send();
+	function messageNPS() {
+		var channelNPS;
+		var channelType;
+		if ((skill === "facebook") || (skill === "facebook_night")){
+			channelNPS = "facebook";
+		}
+		if ((skill === "web") || (skill === "web_night")){
+			channelNPS = "web";
+		}
+		if (skill === "fixed") {
+			channelNPS = "fixed";
+		}
+		if ((skill === "outbound") || (skill === "outbound_fixed")){
+			channelNPS = "outbound";
+		}
+
+	
+		if ((skill === "outbound") || (skill === "outbound_fixed")){
+			channelType = "OUT";
+		} else{
+			channelType = "PM";
+		}
+		if (agentGroup === "Main Group"){
+			agentGroup = "Main_Group";
+		}
+		var myCustomMSG = "Ti ringrazio di avere utilizzato il nostro servizio Facebook, ti rimetto in contatto con TOBi, se avrai bisogno di altre informazioni puoi chiedergliele direttamente! Ti ricordo che cliccando sul link seguente puoi esprimere il tuo parere su quanto hai gradito il supporto che ti ho fornito. Per me è molto importante ricevere la tua risposta e che la tua soddisfazione sia massima! Ci conto :-) https://assets.kampyle.com/clients/vodafone/direct/form.html?region=prodEuIrland&websiteId=67241&formId=4313&caseID=" + convID + "&channel=" + channelNPS + "&group=" + agentGroup + "&type=" +  channelType;
+		
+		var cmdName = lpTag.agentSDK.cmdNames.write;
+		var data = {text: myCustomMSG};
+		lpTag.agentSDK.command(cmdName, data, function (err) {
+			outputLog.value = err ? err : 'done';
+		});
+
 	}
 	
 	function sendToLimbo() {
@@ -1335,7 +1349,7 @@ $(function() {
   </br>
               
    <button id ="submit" class="web-button" type="button" onclick="sendData()" disabled>Invia Dati</button>
-   <button id ="submitNPS" class="web-button" type="button" onclick="askForGroup()" style="float: right;" >NPS</button>
+   <button id ="submitNPS" class="web-button" type="button" onclick="messageNPS()" style="float: right;" >NPS</button>
    <div id="alert"></div>
 
 </div>
