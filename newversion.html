@@ -657,6 +657,7 @@ textarea {
 						$("#submit").addClass('facebook-button').removeClass('web-button');
 						$("#submitawake").addClass('facebook-button').removeClass('web-button');
 						$("#submitlimbo").addClass('facebook-button').removeClass('web-button');
+						$("#submitNPS").addClass('facebook-button').removeClass('web-button');
 						
 						if(myXHR[0] === "---"){
 							$('#telefono').val(telefonoTobi[0].phone);
@@ -958,6 +959,8 @@ textarea {
 					$("#submit").prop( "disabled", false );
 					$("#submitawake").prop( "disabled", false );
 					$("#submitlimbo").prop( "disabled", false );
+					$("#submitNPS").prop( "disabled", false );
+					
 				}
 				
 			}
@@ -978,6 +981,8 @@ textarea {
 					$("#submit").prop( "disabled", false );
 					$("#submitawake").prop( "disabled", false );
 					$("#submitlimbo").prop( "disabled", false );
+					$("#submitNPS").prop( "disabled", false );
+					
 				}
 			}
                 };
@@ -1349,7 +1354,7 @@ $(function() {
   </br>
               
    <button id ="submit" class="web-button" type="button" onclick="sendData()" disabled>Invia Dati</button>
-   <button id ="submitNPS" class="web-button" type="button" onclick="messageNPS()" style="float: right;" >NPS</button>
+   <button id ="submitNPS" class="web-button" type="button" onclick="messageNPS()" style="float: right;" disabled>NPS</button>
    <div id="alert"></div>
 
 </div>
