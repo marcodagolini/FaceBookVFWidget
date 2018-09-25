@@ -1,7 +1,6 @@
 <html>
  
 	
-
 	
 	
 	
@@ -526,6 +525,40 @@ textarea {
 	var assignedAgent = "";
 	var thisAgent = "";
 	var routing = "";
+	var agentGroup = "";
+	
+	function messageNPS() {
+		var channelNPS;
+		var channelType;
+		if ((skill === "facebook") || (skill === "facebook_night")){
+			channelNPS = "facebook";
+		}
+		if ((skill === "web") || (skill === "web_night")){
+			channelNPS = "web";
+		}
+		if (skill === "fixed") {
+			channelNPS = "fixed";
+		}
+		if ((skill === "outbound") || (skill === "outbound_fixed")){
+			channelNPS = "outbound";
+		}
+	
+		if ((skill === "outbound") || (skill === "outbound_fixed")){
+			channelType = "OUT";
+		} else{
+			channelType = "PM";
+		}
+		if (agentGroup === "Main Group"){
+			agentGroup = "Main_Group";
+		}
+		var myCustomMSG = "Ti ringrazio di avere utilizzato il nostro servizio Facebook, ti rimetto in contatto con TOBi, se avrai bisogno di altre informazioni puoi chiedergliele direttamente! Ti ricordo che cliccando sul link seguente puoi esprimere il tuo parere su quanto hai gradito il supporto che ti ho fornito. Per me è molto importante ricevere la tua risposta e che la tua soddisfazione sia massima! Ci conto :-) https://assets.kampyle.com/clients/vodafone/direct/form.html?region=prodEuIrland&websiteId=67241&formId=4313&caseID=" + convID + "&channel=" + channelNPS + "&group=" + agentGroup + "&type=" +  channelType;
+		
+		var cmdName = lpTag.agentSDK.cmdNames.write;
+		var data = {text: myCustomMSG};
+		lpTag.agentSDK.command(cmdName, data, function (err) {
+			outputLog.value = err ? err : 'done';
+		});
+	}
 	
 	function sendToLimbo() {
 		document.getElementById("alertAwake").innerHTML = "...invio nel Limbo...";
@@ -621,6 +654,7 @@ textarea {
 						$("#submit").addClass('facebook-button').removeClass('web-button');
 						$("#submitawake").addClass('facebook-button').removeClass('web-button');
 						$("#submitlimbo").addClass('facebook-button').removeClass('web-button');
+						$("#submitNPS").addClass('facebook-button').removeClass('web-button');
 						
 						if(myXHR[0] === "---"){
 							$('#telefono').val(telefonoTobi[0].phone);
@@ -639,7 +673,6 @@ textarea {
 						}else{
 							$('#cfiscale').val(myXHR[2]);
 						}
-
 					} else{
 						console.log("questo e' web");
 						if(myXHR[0] === "---"){
@@ -923,6 +956,8 @@ textarea {
 					$("#submit").prop( "disabled", false );
 					$("#submitawake").prop( "disabled", false );
 					$("#submitlimbo").prop( "disabled", false );
+					$("#submitNPS").prop( "disabled", false );
+					
 				}
 				
 			}
@@ -943,6 +978,8 @@ textarea {
 					$("#submit").prop( "disabled", false );
 					$("#submitawake").prop( "disabled", false );
 					$("#submitlimbo").prop( "disabled", false );
+					$("#submitNPS").prop( "disabled", false );
+					
 				}
 			}
                 };
@@ -968,6 +1005,16 @@ textarea {
                 };
 		
 		
+		var onSuccess11 = function(data) {
+                // Do something with the returning data
+			agentGroup = data;
+			
+                };
+                
+                var onError11 = function(data) {
+                // Do something with the returning data
+                	agentGroup = null;
+                };
                
                
    
@@ -983,6 +1030,7 @@ textarea {
 		SDK.get('agentInfo.agentId', onSuccess8, onError8); //currentagent
 		SDK.get('chattingAgentInfo.agentId', onSuccess9, onError9); //agentassigned
 		SDK.get('authenticatedData.customerDetails.type', onSuccess10, onError10); //routing
+		SDK.get('chattingAgentInfo.agentGroupName', onSuccess11, onError11); //group
                
               
            });
@@ -1303,6 +1351,7 @@ $(function() {
   </br>
               
    <button id ="submit" class="web-button" type="button" onclick="sendData()" disabled>Invia Dati</button>
+   <button id ="submitNPS" class="web-button" type="button" onclick="messageNPS()" style="float: right;" disabled>NPS</button>
    <div id="alert"></div>
 
 </div>
