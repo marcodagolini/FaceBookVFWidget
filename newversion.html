@@ -1,11 +1,10 @@
 <html>
- 
+
+
 
 	
 	
-	
 <style>		
-	
 	
 textarea {
     resize: none;
@@ -528,6 +527,19 @@ textarea {
 	var agentGroup = "";
 	
 	function messageNPS() {
+		
+		var today = new Date();
+		var dd = today.getDate();
+		var mm = today.getMonth()+1; //January is 0!
+		var yyyy = today.getFullYear();
+		if(dd<10){
+			dd='0'+dd;
+		}
+		if(mm<10){
+			mm='0'+mm;
+		}
+		var myToday = dd+'/'+mm+'/'+yyyy;
+		
 		var channelNPS;
 		var channelType;
 		var myForm = "";
@@ -559,7 +571,7 @@ textarea {
 		if (agentGroup === "Main Group"){
 			agentGroup = "Main_Group";
 		}
-		var myCustomMSG = "Ti ringrazio di avere utilizzato il nostro servizio Facebook, ti rimetto in contatto con TOBi, se avrai bisogno di altre informazioni puoi chiedergliele direttamente! \n\nTi ricordo che cliccando sul link seguente puoi esprimere il tuo parere su quanto hai gradito il supporto che ti ho fornito. Per me è molto importante ricevere la tua risposta e che la tua soddisfazione sia massima! Ci conto :-) \n\nhttps://assets.kampyle.com/clients/vodafone/direct/form.html?region=prodEuIrland&websiteId=67241&formId=" + myForm + "&caseID=" + convID + "&channel=" + channelNPS + "&group=" + agentGroup + "&type=" +  channelType;
+		var myCustomMSG = "Ti ringrazio di avere utilizzato il nostro servizio Clienti, ti rimetto in contatto con TOBi, se avrai bisogno di altre informazioni puoi chiedergliele direttamente! \n\nTi ricordo che cliccando sul link seguente puoi esprimere il tuo parere su quanto hai gradito il supporto che ti ho fornito. Per me è molto importante ricevere la tua risposta e che la tua soddisfazione sia massima! Ci conto :-) \n\nhttps://assets.kampyle.com/clients/vodafone/direct/form.html?region=prodEuIrland&websiteId=67241&formId=" + myForm + "&caseID=" + convID + "&channel=" + channelNPS + "&group=" + agentGroup + "&type=" +  channelType  + "&date=" + myToday;
 		
 		var cmdName = lpTag.agentSDK.cmdNames.write;
 		var data = {text: myCustomMSG};
@@ -1166,9 +1178,10 @@ textarea {
        "E23": "Upgrade Fibra",
        "E24": "Passaggio ADSL - Fibra",
        "E25": "Copertura",
-       "E26": "Wifi Community",
-       "E27": "Teletu",
-       "E28": "Velocita'",
+       "E26": "Net Neutrality",
+       "E27": "Wifi Community",
+       "E28": "Teletu",
+       "E29": "Velocita'",
        "E31": "Conto Telefonico - Voce scontistica",
        "E32": "Conto Telefonico - Contestazione addebiti",
        "E33": "Conto Telefonico - Comunicazioni in fattura",
@@ -1208,6 +1221,7 @@ textarea {
        "F22": "4G",
        "F23": "Richiesta PUK",
        "F24": "Connessione / Configurazione",
+       "F25": "Giga Network",
        "F31": "Consenso Commerciale",
        "F32": "Piano",
        "F33": "Servizi",
@@ -1283,6 +1297,17 @@ textarea {
    
   });
     
+	
+$('#understood').change(function(){
+    if($(this).prop('checked')){
+            $('#notUnderstood').prop('checked', false);
+    }
+});
+$('#notUnderstood').change(function(){
+    if($(this).prop('checked')){
+            $('#understood').prop('checked', false);
+    }
+});
   
 $(function() {
     $(".chzn-select").chosen();
@@ -1300,11 +1325,13 @@ $(function() {
 	<label>Numero telefono: </label> <input type="text" id="telefono"></br>
 	<label>Numero ricontatto: </label> <input type="text" id="ricontatto"></br>
 	<label>Codice fiscale: </label> <input type="text" id="cfiscale"></br></br>
+	<label>Tobi ha capito? si</label> <input type="checkbox" value="understood" id="understood"> <label>no</label><input type="checkbox" value="notUnderstood" id="notUnderstood"></br>
 	<label>Inserisci un tag: </label>
 	</br>
 
 <select id="vfTag" class="chzn-select" multiple="true" name="faculty" style="width:200px;">
         <option value="BANNATO">BANNATO</option>
+	<option value="Caso da freeze">Caso da freeze</option>
         <option value="Contatto Outbound KO">Contatto Outbound KO</option>
         <option value="Contatto Outbound OK">Contatto Outbound OK</option>
         <option value="Contatto Outbound OK 2">Contatto Outbound OK 2</option>
@@ -1359,7 +1386,7 @@ $(function() {
   </br>
               
    <button id ="submit" class="web-button" type="button" onclick="sendData()" disabled>Invia Dati</button>
-   <button id ="submitNPS" class="web-button" type="button" onclick="messageNPS()" style="float: right;" >NPS</button>
+   <button id ="submitNPS" class="web-button" type="button" onclick="messageNPS()" style="float: right;" disabled>NPS</button>
    <div id="alert"></div>
 
 </div>
