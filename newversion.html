@@ -839,19 +839,20 @@ textarea {
 					var triplettatre = thirdlevel[val];
 				}
 			}
+			var yesno = "";
 			if($('#understood').prop('checked')){
-				console.log("understood");
+				yesno = "yes";
 			} else if($('#notUnderstood').prop('checked')){
-				console.log("not understood");
+				yesno = "no";
 			} else{
-				console.log("boh");
+				yesno = "undefined";
 			}
 				
 		
 		
 			// $("#vfTag").chosen().val()
 		
-			console.log("***" + telefono + "***" + ricontatto + "***" + cfiscale + "***" + vfTag + "***" + triplettauno + "***" + triplettadue + "***" + triplettatre + "***");
+			console.log("***" + telefono + "***" + ricontatto + "***" + cfiscale + "***" + vfTag + "***" + triplettauno + "***" + triplettadue + "***" + triplettatre + "***" + yesno + "***");
         		var xhr = new XMLHttpRequest();
         		xhr.addEventListener("readystatechange", function () {
           			if (this.readyState === 4) {
@@ -869,7 +870,7 @@ textarea {
 					// var jsonResult = JSON.parse(this.responseText);
           			}
         		});
-        		var URLforGET = "https://vodafonebotdario.herokuapp.com/add?retrieve=0&telefono=" + telefono + "&ricontatto=" + ricontatto + "&cfiscale=" + cfiscale + "&vfTag=" + vfTag + "&triplettauno=" + triplettauno + "&triplettadue=" + triplettadue + "&triplettatre=" + triplettatre + "&skill=" + skill + "&convID=" + convID;
+        		var URLforGET = "https://vodafonebotdario.herokuapp.com/add?retrieve=0&telefono=" + telefono + "&ricontatto=" + ricontatto + "&cfiscale=" + cfiscale + "&vfTag=" + vfTag + "&triplettauno=" + triplettauno + "&triplettadue=" + triplettadue + "&triplettatre=" + triplettatre + "&skill=" + skill + "&convID=" + convID + "&yesno=" + yesno;
 			console.log(URLforGET);
 			xhr.open("GET", URLforGET);
         		xhr.send();
