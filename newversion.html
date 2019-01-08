@@ -783,6 +783,20 @@ textarea {
 						}
 					}
 					$("#myLogs").val(myXHR[7]);
+					if(myXHR[8] !== null){
+						if(myXHR[8] === "yes"){
+							$('#understood').prop('checked', true);
+							$('#notUnderstood').prop('checked', false);
+						}
+						if(myXHR[8] === "no"){
+							$('#understood').prop('checked', false);
+							$('#notUnderstood').prop('checked', true);
+						}
+						if(myXHR[8] === "undefined"){
+							$('#understood').prop('checked', false);
+							$('#notUnderstood').prop('checked', false);
+						}
+					}
 				}
 					
 			}
