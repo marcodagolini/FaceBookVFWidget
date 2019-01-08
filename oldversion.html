@@ -1,12 +1,10 @@
 <html>
- 
-	
+
+
 
 	
 	
-	
 <style>		
-	
 	
 textarea {
     resize: none;
@@ -526,6 +524,61 @@ textarea {
 	var assignedAgent = "";
 	var thisAgent = "";
 	var routing = "";
+	var agentGroup = "";
+	
+	function messageNPS() {
+		
+		var today = new Date();
+		var dd = today.getDate();
+		var mm = today.getMonth()+1; //January is 0!
+		var yyyy = today.getFullYear();
+		if(dd<10){
+			dd='0'+dd;
+		}
+		if(mm<10){
+			mm='0'+mm;
+		}
+		var myToday = dd+'/'+mm+'/'+yyyy;
+		
+		var channelNPS;
+		var channelType;
+		var myForm = "";
+		
+		if (routing.indexOf("acebook") > -1){
+			myForm = "4313";
+		} else{
+			myForm = "3412";
+		}
+		
+		if (skill.indexOf("acebook") > -1){
+			channelNPS = "facebook";
+		}
+		if (skill.indexOf("uman") > -1){
+			channelNPS = "web";
+		}
+		if (skill.indexOf("ixed") > -1) {
+			channelNPS = "fixed";
+		}
+		if (skill.indexOf("utbound") > -1){
+			channelNPS = "outbound";
+		}
+	
+		if (channelNPS === "outbound"){
+			channelType = "OUT";
+		} else{
+			channelType = "PM";
+		}
+		if (agentGroup === "Main Group"){
+			agentGroup = "Main_Group";
+		}
+		var myCustomMSG = "Ti ringrazio di avere utilizzato il nostro servizio Clienti, ti rimetto in contatto con TOBi, se avrai bisogno di altre informazioni puoi chiedergliele direttamente! \n\nTi ricordo che cliccando sul link seguente puoi esprimere il tuo parere su quanto hai gradito il supporto che ti ho fornito. Per me è molto importante ricevere la tua risposta e che la tua soddisfazione sia massima! Ci conto :-) \n\nhttps://assets.kampyle.com/clients/vodafone/direct/form.html?region=prodEuIrland&websiteId=67241&formId=" + myForm + "&caseID=" + convID + "&channel=" + channelNPS + "&group=" + agentGroup + "&type=" +  channelType  + "&date=" + myToday;
+		
+		var cmdName = lpTag.agentSDK.cmdNames.write;
+		var data = {text: myCustomMSG};
+		lpTag.agentSDK.command(cmdName, data, function (err) {
+			outputLog.value = err ? err : 'done';
+		});
+	}
 	
 	function sendToLimbo() {
 		document.getElementById("alertAwake").innerHTML = "...invio nel Limbo...";
@@ -621,18 +674,44 @@ textarea {
 						$("#submit").addClass('facebook-button').removeClass('web-button');
 						$("#submitawake").addClass('facebook-button').removeClass('web-button');
 						$("#submitlimbo").addClass('facebook-button').removeClass('web-button');
+						$("#submitNPS").addClass('facebook-button').removeClass('web-button');
 						
-						// $('#telefono').val(myXHR[0]);
-						// $('#ricontatto').val(myXHR[1]);
-						// $('#cfiscale').val(myXHR[2]);
-						$('#telefono').val(telefonoTobi[0].phone);
-						$('#ricontatto').val(ricontattoTobi);
-						// $('#cfiscale').val(cfiscaleTobi);
+						if(myXHR[0] === "---"){
+							$('#telefono').val(telefonoTobi[0].phone);
+						}else{
+							$('#telefono').val(myXHR[0]);
+						}
+						
+						if(myXHR[1] === "---"){
+							$('#ricontatto').val(ricontattoTobi);
+						}else{
+							$('#ricontatto').val(myXHR[1]);
+						}
+						
+						if(myXHR[2] === "---"){
+							$('#cfiscale').val("");
+						}else{
+							$('#cfiscale').val(myXHR[2]);
+						}
 					} else{
 						console.log("questo e' web");
-						$('#telefono').val(telefonoTobi[0].phone);
-						$('#ricontatto').val(ricontattoTobi);
-						$('#cfiscale').val(cfiscaleTobi);
+						if(myXHR[0] === "---"){
+							$('#telefono').val(telefonoTobi[0].phone);
+						}else{
+							$('#telefono').val(myXHR[0]);
+						}
+						
+						if(myXHR[1] === "---"){
+							$('#ricontatto').val(ricontattoTobi);
+						}else{
+							$('#ricontatto').val(myXHR[1]);
+						}
+						
+						if(myXHR[2] === "---"){
+							$('#cfiscale').val(cfiscaleTobi);
+						}else{
+							$('#cfiscale').val(myXHR[2]);
+						}
 					}
 					if(myXHR[3] !== null){
 						if(myXHR[3].indexOf(",") == -1){
@@ -897,6 +976,8 @@ textarea {
 					$("#submit").prop( "disabled", false );
 					$("#submitawake").prop( "disabled", false );
 					$("#submitlimbo").prop( "disabled", false );
+					$("#submitNPS").prop( "disabled", false );
+					
 				}
 				
 			}
@@ -917,6 +998,8 @@ textarea {
 					$("#submit").prop( "disabled", false );
 					$("#submitawake").prop( "disabled", false );
 					$("#submitlimbo").prop( "disabled", false );
+					$("#submitNPS").prop( "disabled", false );
+					
 				}
 			}
                 };
@@ -942,6 +1025,16 @@ textarea {
                 };
 		
 		
+		var onSuccess11 = function(data) {
+                // Do something with the returning data
+			agentGroup = data;
+			
+                };
+                
+                var onError11 = function(data) {
+                // Do something with the returning data
+                	agentGroup = null;
+                };
                
                
    
@@ -957,6 +1050,7 @@ textarea {
 		SDK.get('agentInfo.agentId', onSuccess8, onError8); //currentagent
 		SDK.get('chattingAgentInfo.agentId', onSuccess9, onError9); //agentassigned
 		SDK.get('authenticatedData.customerDetails.type', onSuccess10, onError10); //routing
+		SDK.get('chattingAgentInfo.agentGroupName', onSuccess11, onError11); //group
                
               
            });
@@ -1033,6 +1127,7 @@ textarea {
        "B24": "BTC Ritardo /mancata consegna corriere",
        "B25": "Fallita Identificazione",
        "B26": "Teleselling",
+       "B27": "Addebiti Clienti Disattivi",	      
        "B31": "Abbonamenti",
        "B32": "Ricaricabili",
        "B33": "Smartphone, Tablet e Accessori",
@@ -1083,9 +1178,10 @@ textarea {
        "E23": "Upgrade Fibra",
        "E24": "Passaggio ADSL - Fibra",
        "E25": "Copertura",
-       "E26": "Wifi Community",
-       "E27": "Teletu",
-       "E28": "Velocita'",
+       "E26": "Net Neutrality",
+       "E27": "Wifi Community",
+       "E28": "Teletu",
+       "E29": "Velocita'",
        "E31": "Conto Telefonico - Voce scontistica",
        "E32": "Conto Telefonico - Contestazione addebiti",
        "E33": "Conto Telefonico - Comunicazioni in fattura",
@@ -1120,10 +1216,12 @@ textarea {
        "F18": "Ho.",
        "F19": "OC LUGLIO 18",
        "F110": "OC MBB",
+       "F111": "Apple Watch",
        "F21": "Smartphone, Tablet e Accessori",
        "F22": "4G",
        "F23": "Richiesta PUK",
        "F24": "Connessione / Configurazione",
+       "F25": "Giga Network",
        "F31": "Consenso Commerciale",
        "F32": "Piano",
        "F33": "Servizi",
@@ -1221,6 +1319,7 @@ $(function() {
 
 <select id="vfTag" class="chzn-select" multiple="true" name="faculty" style="width:200px;">
         <option value="BANNATO">BANNATO</option>
+	<option value="Caso da freeze">Caso da freeze</option>
         <option value="Contatto Outbound KO">Contatto Outbound KO</option>
         <option value="Contatto Outbound OK">Contatto Outbound OK</option>
         <option value="Contatto Outbound OK 2">Contatto Outbound OK 2</option>
@@ -1237,6 +1336,7 @@ $(function() {
 	<option value="Lavorato in Chorally">Lavorato in Chorally</option>
         <option value="Messaggio Diretto">Messaggio Diretto</option>
         <option value="Monitor">Monitor</option>
+	<option value="PINC">PINC</option>
         <option value="POST CANCELLATO">POST CANCELLATO</option>
         <option value="POST NASCOSTO">POST NASCOSTO</option>
         <option value="Primo Contatto KO">Primo Contatto KO</option>
@@ -1274,6 +1374,7 @@ $(function() {
   </br>
               
    <button id ="submit" class="web-button" type="button" onclick="sendData()" disabled>Invia Dati</button>
+   <button id ="submitNPS" class="web-button" type="button" onclick="messageNPS()" style="float: right;" disabled>NPS</button>
    <div id="alert"></div>
 
 </div>
