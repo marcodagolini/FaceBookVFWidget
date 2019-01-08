@@ -787,14 +787,22 @@ textarea {
 						if(myXHR[8] === "yes"){
 							$('#understood').prop('checked', true);
 							$('#notUnderstood').prop('checked', false);
+							$('#notAvailable').prop('checked', false);
 						}
 						if(myXHR[8] === "no"){
 							$('#understood').prop('checked', false);
 							$('#notUnderstood').prop('checked', true);
+							$('#notAvailable').prop('checked', false);
+						}
+						if(myXHR[8] === "NV"){
+							$('#understood').prop('checked', false);
+							$('#notUnderstood').prop('checked', false);
+							$('#notAvailable').prop('checked', true);
 						}
 						if(myXHR[8] === "undefined"){
 							$('#understood').prop('checked', false);
 							$('#notUnderstood').prop('checked', false);
+							$('#notAvailable').prop('checked', false);
 						}
 					}
 				}
@@ -858,6 +866,8 @@ textarea {
 				yesno = "yes";
 			} else if($('#notUnderstood').prop('checked')){
 				yesno = "no";
+			} else if($('#notAvailable').prop('checked')){
+				yesno = "NV";
 			} else{
 				yesno = "undefined";
 			}
@@ -1323,11 +1333,19 @@ $( document ).ready(function() {
 	$('#understood').change(function(){
 		if($(this).prop('checked')){
 			$('#notUnderstood').prop('checked', false);
+			$('#notAvailable').prop('checked', false);
 		}
 	});
 	$('#notUnderstood').change(function(){
 		if($(this).prop('checked')){
 			$('#understood').prop('checked', false);
+			$('#notAvailable').prop('checked', false);
+		}
+	});
+	$('#notAvailable').change(function(){
+		if($(this).prop('checked')){
+			$('#understood').prop('checked', false);
+			$('#notUnderstood').prop('checked', false);
 		}
 	});
 });
@@ -1348,7 +1366,7 @@ $(function() {
 	<label>Numero telefono: </label> <input type="text" id="telefono"></br>
 	<label>Numero ricontatto: </label> <input type="text" id="ricontatto"></br>
 	<label>Codice fiscale: </label> <input type="text" id="cfiscale"></br></br>
-	<label>Tobi ha capito? si</label> <input type="checkbox" value="understood" id="understood"> <label>no</label><input type="checkbox" value="notUnderstood" id="notUnderstood"></br></br>
+	<label>Tobi ha capito? si</label> <input type="checkbox" value="understood" id="understood"> <label>no</label><input type="checkbox" value="notUnderstood" id="notUnderstood"> <label>NV</label><input type="checkbox" value="notAvalaible" id="notAvalaible"></br></br>
 	<label>Inserisci un tag: </label>
 	</br>
 
