@@ -1104,7 +1104,7 @@ textarea {
   
   var secondlevel = 
       {
-       "A0": "Scegli una opzione...",
+       "A-0": "Scegli una opzione...",
 	      "A1": "28-30 adeguamento",
 	      "A2": "414-Chiamami-Recall",
 	      "A3": "Backoffice Amministrativo CATANIA IN",
@@ -1137,7 +1137,7 @@ textarea {
 	      "A30": "TEST",
 	      "A31": "Variazioni",
 	      "A32": "Vendita FL",
-	      "B0": "Scegli una opzione...",
+	      "B-0": "Scegli una opzione...",
 	      "B1": "APP",
 	      "B2": "Assistenza Premium",
 	      "B3": "Connessione Instabile",
@@ -1156,7 +1156,7 @@ textarea {
 	      "B16": "Sostituzione Station",
 	      "B17": "trasferimento",
 	      "B18": "Wifi",
-	      "C0": "Scegli una opzione...",
+	      "C-0": "Scegli una opzione...",
 	      "C1": "28-30 adeguamento",
 	      "C2": "Altro",
 	      "C3": "Backoffice amministrativo Ct",
@@ -1187,30 +1187,30 @@ textarea {
 	      "C28": "Trasferimenti",
 	      "C29": "Variazioni  sim/ offerte/servizi/opzioni",
 	      "C30": "Vodafone TV",
-	      "D0": "Scegli una opzione...",
+	      "D-0": "Scegli una opzione...",
        "D1": "Informazioni Commerciali",
        "D2": "Informazioni Tecniche",
        "D3": "Problemi Gestione Cliente",
        "D4": "Problemi Tecnici",
-       "E0": "Scegli una opzione...",
+       "E-0": "Scegli una opzione...",
        "E1": "Informazioni Commerciali",
        "E2": "Problemi Gestione Cliente",
        "E3": "Lamentela/Insoddisfazione",
-       "F0": "Scegli una opzione...",
+       "F-0": "Scegli una opzione...",
        "F1": "Caratteri non occidentali",
        "F2": "SIM non italiana",
        "F3": "Off Topic",
-       "G0": "Scegli una opzione...",
+       "G-0": "Scegli una opzione...",
        "G1": "Informazioni",
        "G2": "Segnalazioni / Lamentele",
-       "H0": "Scegli una opzione...",
+       "H-0": "Scegli una opzione...",
        "H1": "Informazioni Commerciali",
        "H2": "Informazioni Tecniche",
        "H3": "Problemi Gestione Cliente",
        "H4": "Problemi Tecnici",
        "H5": "Informazioni sul mio numero",
        "H6": "Lamentela/Insoddisfazione",
-       "I0": "Scegli una opzione...",
+       "I-0": "Scegli una opzione...",
        "I1": "Informazioni Commerciali",
        "I2": "Informazioni Tecniche",
        "I3": "Variazioni",
@@ -1773,7 +1773,7 @@ textarea {
      $("#triplettatre").remove();
      	
       var s = $('<select id="triplettatre"/>');
-      if(!(this.value.indexOf('0') > -1)){
+      if(!(this.value.indexOf('-0') > -1)){
        for(var val in thirdlevel) {
 	var myStringToCheck = this.value + "-";
         if(val.indexOf(myStringToCheck) > -1){
